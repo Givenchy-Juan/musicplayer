@@ -1,4 +1,6 @@
 // pages/player/player.js
+const app = getApp();
+
 let musiclist = []
 let nowPlayingIndex = 0
     // properties(Read only)(duration,currentTime,paused,buffered)
@@ -91,10 +93,12 @@ Page({
             backAudioManager.coverImgUrl = music.al.picUrl
             backAudioManager.singer = music.ar[0].name
             backAudioManager.epname = music.al.name
+            this.savePlayHistory()
             this.setData({
                 isPlaying: true
             })
             wx.hideLoading();
+
 
             // 加载歌词
             // wx.cloud.callFunction({
@@ -117,6 +121,27 @@ Page({
 
         })
 
+    },
+
+    //保存播放历史
+    savePlayHistory() {
+        const music = musiclist[nowPlayingIndex]
+        const openid = app.globalData.openid
+        const history = wx.getStorageSync(openid)
+        let bHave = false
+        for (let i = 0, len = history.length; i < len; i++) {
+            if (history[i].id == music.id) {
+                bHave = true
+                break
+            }
+        }
+        if (!bHave) {
+            history.unshift(music)
+            wx.setStorage({
+                key: openid,
+                data: history,
+            });
+        }
     },
     /**
      * 生命周期函数--监听页面初次渲染完成

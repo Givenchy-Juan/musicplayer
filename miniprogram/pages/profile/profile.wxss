@@ -25,3 +25,35 @@ page {
     border: 6rpx solid #fff;
     border-radius: 50%;
 }
+
+.nav {
+    margin-top: 30rpx;
+    margin-left: 20rpx;
+    margin-right: 20rpx;
+    border-radius: 30%;
+}
+
+.nav-item {
+    background-color: #fff;
+    height: 100rpx;
+    margin-top: 5rpx;
+    display: flex;
+    align-items: center;
+}
+
+.iconfont {
+    flex: 1;
+    color: #d81e06;
+    margin-left: 20rpx;
+    margin-right: 20rpx;
+}
+
+.text {
+    flex: 6;
+    color: #333333;
+}
+
+.icon-next01 {
+    flex: 1;
+    color: #333333;
+}
