@@ -1,21 +1,22 @@
 <view class="container">
-    <textarea fixed="{{true}}" class="content" 
-    bindinput="onInput"
-    auto-focus="{{true}}"
-    bindfocus="onFocus"
-    bindblur="onBlur"
-    placeholder="分享新鲜事..."></textarea>
-    <!--原生组件写bind的时候是不允许写冒号的,,-->
+    <textarea fixed="{{true}}" class="content" bindinput="onInput" auto-focus="{{true}}" bindfocus="onFocus" bindblur="onBlur" placeholder="分享新鲜事..."></textarea>
+    <!-- 原生组件写bind的时候是不允许写冒号的,, -->
     <view class="image-list">
         <!-- 显示图片 -->
+        <block wx:for="{{images}}" wx:key="*this">
+            <view class="image-wrap">
+                <image class="image" src="{{item}}" mode="aspectFill" bind:tap="onPreviewImage" data-imgsrc="{{item}}"></image>
+                <i class="iconfont icon-shanchu" bind:tap="onDelete" data-index="{{index}}"></i>
+            </view>
+        </block>
         <!-- 选择图片 -->
-        <view class="image-wrap selectphoto">
+        <view class="image-wrap selectphoto" hidden="{{!selectPhoto}}" bind:tap="onChange">
             <!-- 差一个加号的字体图标 -->
             <i class="iconfont icon-jiahao"></i>
         </view>
     </view>
 </view>
 <view class="footer" style="bottom:{{footerBottom}}px">
-    <text class="words-num" >{{wordsNum}}</text>
-    <button class="send-btn">发布</button>
+    <text class="words-num">{{wordsNum}}</text>
+    <button class="send-btn" bindtap="send">发布</button>
 </view>
