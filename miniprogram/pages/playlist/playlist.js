@@ -31,6 +31,8 @@ Page({
      */
     onLoad: function(options) {
         this._getPlaylist()
+            //扫描小程序码所获取的信息
+            //console.log(options.scene)
     },
 
     /**

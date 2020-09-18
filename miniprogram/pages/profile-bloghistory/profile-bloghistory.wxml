@@ -1,2 +1,18 @@
-<!--pages/profile-bloghistory/profile-bloghistory.wxml-->
-<text>pages/profile-bloghistory/profile-bloghistory.wxml</text>
+<view>
+    <block wx:for="{{blogList}}" wx:key="_id">
+        <view class="blog-panel">
+            <x-blog-card
+            blog="{{item}}"
+            bind:tap="goComment"
+            data-blogid="{{item._id}}"></x-blog-card>
+
+            <x-blog-ctrl
+            blogId="{{item._id}}"
+            blog="{{item}}"
+            iconfont="iconfont"
+            icon-pinglun="icon=pinglun"
+            icon-fenxiang="icon-fenxiang"></x-blog-ctrl>
+            <!-- 需要补充评论，分享 的图片 -->
+        </view>
+    </block>  
+</view>

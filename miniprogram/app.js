@@ -15,10 +15,12 @@ App({
             })
         }
 
+        this.getOpenid()
+
         this.globalData = {
-                openid: -1,
-            },
-            this.getOpenid()
+            openid: -1,
+        }
+
     },
     getOpenid() {
         wx.cloud.callFunction({
