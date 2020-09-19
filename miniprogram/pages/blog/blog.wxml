@@ -5,7 +5,7 @@
             <i class='iconfont icon-fabu' bind:tap="onPublish"></i>
         </view>
         <view class="search-container">
-            <x-search iconfont="iconfont" icon-sousuo="icon-sousuo"></x-search>
+            <x-search iconfont="iconfont" bind:onSearch="onSearch" icon-sousuo="icon-sousuo"></x-search>
         </view>
     </view>
     <!-- 博客卡片列表 -->

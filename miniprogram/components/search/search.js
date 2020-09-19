@@ -1,17 +1,18 @@
 // components/search/search.js
+let keyword = ''
 Component({
   /**
    * 组件的属性列表
    */
   properties: {
-    placeholder:{
-      type:String,
-      value:'请输入'
+    placeholder: {
+      type: String,
+      value: '请输入'
     }
   },
   // page中引用组件的时候传入class名称
   //todo 传递进来的样式 在组件中是不能修改的
-  externalClasses:[
+  externalClasses: [
     'iconfont',
     'icon-sousuo'
   ],
@@ -27,6 +28,12 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    onInput(event) {
+      keyword = event.detail.value
+    },
+    onSearch(){
+      // console.log(keyword)
+      this.triggerEvent('onSearch',{keyword})
+    }
   }
 })

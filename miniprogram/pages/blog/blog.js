@@ -1,4 +1,5 @@
 // pages/blog/blog.js
+let keyword= ''
 Page({
 
     /**
@@ -68,6 +69,7 @@ Page({
             data: {
                 $url: 'list',
                 start,
+                keyword,
                 count: 10
             }
         }).then(res => {
@@ -78,10 +80,19 @@ Page({
             wx.stopPullDownRefresh()
         })
     },
-    goComment(event){
+    goComment(event) {
         wx.navigateTo({
-            url:'../../pages/blog-comment/blog-comment?blogId='+event.target.dataset.blogid
+            url: '../../pages/blog-comment/blog-comment?blogId=' + event.target.dataset.blogid
         })
+    },
+    onSearch(event) {
+        console.log(event.detail.keyword)
+        //搜索完以后先清空
+        this.setData({
+            blogList:[]
+        })
+        keyword = event.detail.keyword
+        this._loadBlogList(0)
     },
     /**
      * 生命周期函数--监听页面初次渲染完成
@@ -116,7 +127,7 @@ Page({
      */
     onPullDownRefresh: function () {
         this.setData({
-            blogList:[]
+            blogList: []
         })
         this._loadBlogList(0)
     },
