@@ -145,7 +145,8 @@ Page({
       return
     }
     wx.showLoading({
-      title:'发布中'
+      title:'发布中',
+      mask:true,
     })
     let promiseArr = []
     let fileIds=[]
@@ -188,8 +189,13 @@ Page({
         wx.showToast({
           title:'发布成功'
         })
-        //返回blog页面
+        //返回blog页面,并且刷新数据
         wx.navigateBack()
+        const pages =  getCurrentPages();
+        //取到上一个界面
+        const prevPage = pages[pages.length-2]
+        prevPage.onPullDownRefresh()
+        
       })
     }).catch(err=>{
       wx.hideLoading()

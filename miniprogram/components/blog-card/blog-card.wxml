@@ -9,7 +9,12 @@
     <view class="blog-content">{{blog.content}}</view>
     <view class="blog-img">
         <block wx:for="{{blog.img}}" wx:key="{{index}}">
-            <image class="img" src="{{item}}" mode="aspectFill"></image>
+            <image class="img" src="{{item}}" 
+            data-imgsrc="{{item}}"
+            data-imgs="{{blog.img}}"
+            mode="aspectFill" catch:tap="onPreviewImage"></image>
+            <!--bindtap会存在事件冒泡-->
+            <!--catch不会事件冒泡-->
         </block>
     </view>
 </view>
