@@ -1,4 +1,5 @@
 // pages/blog/blog.js
+let keyword= ''
 Page({
 
     /**
@@ -6,7 +7,8 @@ Page({
      */
     data: {
         //控制底部弹出层是否显示
-        modalShow: false
+        modalShow: false,
+        blogList: []
     },
     //发布功能
     onPublish() {
@@ -20,7 +22,7 @@ Page({
                             // console.log(result)
                             //成功的时候调用这个函数
                             this.onLoginSuccess({
-                                detail:result.userInfo
+                                detail: result.userInfo
                             })
                         },
                         fail: () => { },
@@ -56,9 +58,42 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
+        this._loadBlogList()
     },
-
+    _loadBlogList(start = 0) {
+        wx.showLoading({
+            title: '拼命加载中'
+        })
+        wx.cloud.callFunction({
+            name: 'blog',
+            data: {
+                $url: 'list',
+                start,
+                keyword,
+                count: 10
+            }
+        }).then(res => {
+            this.setData({
+                blogList: this.data.blogList.concat(res.result)
+            })
+            wx.hideLoading()
+            wx.stopPullDownRefresh()
+        })
+    },
+    goComment(event) {
+        wx.navigateTo({
+            url: '../../pages/blog-comment/blog-comment?blogId=' + event.target.dataset.blogid
+        })
+    },
+    onSearch(event) {
+        console.log(event.detail.keyword)
+        //搜索完以后先清空
+        this.setData({
+            blogList:[]
+        })
+        keyword = event.detail.keyword
+        this._loadBlogList(0)
+    },
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
@@ -91,14 +126,17 @@ Page({
      * 页面相关事件处理函数--监听用户下拉动作
      */
     onPullDownRefresh: function () {
-
+        this.setData({
+            blogList: []
+        })
+        this._loadBlogList(0)
     },
 
     /**
      * 页面上拉触底事件的处理函数
      */
     onReachBottom: function () {
-
+        this._loadBlogList(this.data.blogList.length)
     },
 
     /**

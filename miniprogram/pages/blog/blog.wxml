@@ -5,8 +5,16 @@
             <i class='iconfont icon-fabu' bind:tap="onPublish"></i>
         </view>
         <view class="search-container">
-            <x-search iconfont="iconfont" icon-sousuo="icon-sousuo"></x-search>
+            <x-search iconfont="iconfont" bind:onSearch="onSearch" icon-sousuo="icon-sousuo"></x-search>
         </view>
+    </view>
+    <!-- 博客卡片列表 -->
+    <view class="blog-list">
+        <block wx:for="{{blogList}}" wx:key="_id">
+            <view class="blog-panel">
+                <x-blog-card blog="{{item}}" data-blogid="{{item._id}}" bind:tap="goComment"></x-blog-card>
+            </view>
+        </block>
     </view>
     <!-- 底部弹出层 -->
     <x-login modalShow="{{modalShow}}" bind:loginsuccess="onLoginSuccess" bind:loginfail="onLoginFail">

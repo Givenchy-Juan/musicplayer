@@ -1,6 +1,12 @@
 const MAX_WORDS_NUM = 140
 
 const MAX_IMG_NUM = 9
+
+
+const db = wx.cloud.database()
+    //输入的文字内容
+let content = ''
+let userInfo = {}
 Page({
 
     /**
@@ -12,41 +18,13 @@ Page({
         images: [],
         selectPhoto: true //添加图标的元素是否显示
     },
-    //发送事件
-    send() {
-        let promiseArr = []
-            //图片上传
-        for (let i = 0, len = this.data.images.length; i < len; i++) {
-            new Promise((reslove, reject) => {
-                let item = this.data.images[i]
-                    //文件扩展名
-                let suffix = /\.\w+$/.exec(item)[0]
-                    //todo 2.数据存储到云数据库中
-                    //数据库：内容、图片(云存储)  1.云存储 fileID  云文件ID
-                wx.cloud.uploadFile({
-                    cloudPath: 'blog/' + Date.now() + '-' + Math.random() * 100000 + suffix,
-                    filePath: item,
-                    success: (res) => {
-                        console.log(res)
-                        reslove()
-                    },
-                    fail: (err) => {
-                        console.log(err)
-                        reject()
-                    }
-                })
-            })
-        }
-        //存入云数据库
 
-
-
-    },
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
         console.log(options)
+        userInfo = options
     },
 
     /**
@@ -105,6 +83,7 @@ Page({
         this.setData({
             wordsNum
         })
+        content = event.detail.value
     },
     onFocus(event) {
         console.log(event)
@@ -155,5 +134,74 @@ Page({
             urls: this.data.images,
             current: event.target.dataset.imgsrc
         })
-    }
+    },
+    //发送事件
+    send() {
+        if (content.trim() === '') {
+            wx.showModal({
+                title: '请输入内容',
+                content: ''
+            });
+            return
+        }
+        wx.showLoading({
+            title: '发布中',
+            mask: true,
+        })
+        let promiseArr = []
+        let fileIds = []
+            //图片上传  是一个异步过程
+        for (let i = 0, len = this.data.images.length; i < len; i++) {
+            let p = new Promise((reslove, reject) => {
+                let item = this.data.images[i]
+                    //文件扩展名
+                let suffix = /\.\w+$/.exec(item)[0]
+                    //todo 2.数据存储到云数据库中
+                    // 内容  图片fileID  openid 昵称  头像  时间
+                    //数据库：内容、图片(云存储)  1.云存储 fileID  云文件ID
+                wx.cloud.uploadFile({
+                    cloudPath: 'blog/' + Date.now() + '-' + Math.random() * 100000 + suffix,
+                    filePath: item,
+                    success: (res) => {
+                        console.log(res.fileID)
+                        fileIds = fileIds.concat(res.fileID)
+                        reslove()
+                    },
+                    fail: (err) => {
+                        console.log(err)
+                        reject()
+                    }
+                })
+            })
+            promiseArr.push(p)
+        }
+        //存入云数据库  promise.all
+        Promise.all(promiseArr).then(res => {
+            db.collection('blog').add({
+                data: {
+                    content,
+                    img: fileIds,
+                    ...userInfo, //userInfo 是一个对象 可以用扩展运算符取到里面的每一个属性
+                    createTime: db.serverDate() //服务端时间
+                }
+            }).then(res => {
+                wx.hideLoading();
+                wx.showToast({
+                        title: '发布成功'
+                    })
+                    //返回blog页面,并且刷新数据
+                wx.navigateBack()
+                const pages = getCurrentPages();
+                //取到上一个界面
+                const prevPage = pages[pages.length - 2]
+                prevPage.onPullDownRefresh()
+
+            })
+        }).catch(err => {
+            wx.hideLoading()
+            wx.showModal({
+                title: '发布失败'
+            })
+        })
+    },
 })
