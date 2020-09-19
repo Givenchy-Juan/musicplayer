@@ -13,3 +13,9 @@
         
     </x-login>
 </view>
+
+
+<!-- 后续将博客评论的组件，添加到每个博客详情中 -->
+<view >
+    <x-blog-ctrl></x-blog-ctrl>
+</view>

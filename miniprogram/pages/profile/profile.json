@@ -1,5 +1,7 @@
 {
-    "usingComponents": {},
+    "usingComponents": {
+        "x-blog-ctrl": "/components/blog-ctrl/blog-ctrl"
+    },
     "navigationBarTitleText": "我的",
     "disableScroll": true
 }

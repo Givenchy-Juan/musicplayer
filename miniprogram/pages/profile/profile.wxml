@@ -30,3 +30,11 @@
         </view>
     </view>
 </view>
+
+<!-- 测试 -->
+<view class="" hover-class="none" hover-stop-propagation="false">
+    <x-blog-ctrl
+    iconfont="iconfont"
+    icon-pinglun="icon-pinglun"
+    icon-fenxiang="icon-fenxiang"></x-blog-ctrl>
+</view>
