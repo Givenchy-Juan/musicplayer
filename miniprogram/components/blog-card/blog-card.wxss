@@ -1,0 +1,17 @@
+page {
+    background-color: #f1f1f1;
+}
+.blog{
+    padding: 20rpx;
+    background-color: #fff;
+}
+
+.blog-title{
+    display: flex;
+}
+.blog-portrait{
+    width: 64rpx;
+    height: 64rpx;
+    border-radius: 50%;
+    margin-right: 20rpx;
+}
