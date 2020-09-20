@@ -14,9 +14,9 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
-        this._getListByCloudFn()
-            // 二者选其一使用即可
-            // this._getListByMiniprogram()
+        // this._getListByCloudFn()
+        // 二者选其一使用即可
+        this._getListByMiniprogram()
     },
     _getListByCloudFn() {
         wx.showLoading({
@@ -98,9 +98,9 @@ Page({
      * 页面上拉触底事件的处理函数
      */
     onReachBottom: function() {
-        this._getListByCloudFn()
-            // 二者选其一使用即可
-            // this._getListByMiniprogram()
+        // this._getListByCloudFn()
+        // 二者选其一使用即可
+        this._getListByMiniprogram()
     },
 
     /**
