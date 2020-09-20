@@ -7,12 +7,12 @@
     height: 100%;
 }
 
-.ctrl-item {
-    flex: 1;
-    text-align: center;
-    color: rgba(40, 47, 60, 0.8);
-    font-size: 26rpx;
-    height: 60rpx;
+.pinglun-btn{
+    background-color: #fff;
+    color:#535963;
+    padding: 0;
+    height: 90%;
+    border: none;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -46,9 +46,13 @@
 
 .share-btn {
     background-color: #fff;
+<<<<<<< HEAD
     color: #bdbec4;
+=======
+    color:#535963;
+>>>>>>> 34bfe7722c5b69dde760ead23f264581b7a0da7f
     padding: 0;
-    height: 100%;
+    height: 90%;
     border: none;
     display: flex;
     flex-direction: row;

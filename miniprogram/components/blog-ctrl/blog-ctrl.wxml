@@ -1,8 +1,10 @@
 <!-- components/blog-ctrl/blog-ctrl.wxml -->
 <view class="ctrl">
     <view class="ctrl-item" bind:tap="onComment">
-        <i class="iconfont icon-pinglun icon"></i>
-        <text class="text">评论</text>
+        <button class="pinglun-btn">
+            <i class="iconfont icon-pinglun icon"></i>
+            <text class="text">评论</text>
+        </button>
     </view>
     <view class="ctrl-item share">
         <button open-type="share" hover-class="share-hover" class="share-btn" data-blogid="{{blogId}}" data-blog="{{blog}}">
