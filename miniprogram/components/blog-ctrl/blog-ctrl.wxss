@@ -27,6 +27,7 @@
 .ctrl-item text {
     font-size: 32rpx;
 }
+
 .comment-content {
     width: 560rpx;
     text-align: left;
@@ -34,17 +35,18 @@
     font-size: 32rpx;
 }
 
-.send{
+.send {
     background: #d43c33;
-    color:#fff;
+    color: #fff;
     font-size: 24rpx;
     position: absolute;
     right: 20rpx;
-    bottom:20rpx;
+    bottom: 20rpx;
 }
+
 .share-btn {
     background-color: #fff;
-    color:rgba(40, 47, 60, 0.8);
+    color: #bdbec4;
     padding: 0;
     height: 100%;
     border: none;
@@ -53,9 +55,11 @@
     align-items: center;
     justify-content: center;
 }
-.share-btn::after{
+
+.share-btn::after {
     display: none;
 }
-.share-btn{
+
+.share-btn {
     border: 0;
 }
