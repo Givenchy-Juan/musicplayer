@@ -5,11 +5,13 @@
     align-items: center;
     background: #fff;
     height: 100%;
+    margin-top: 8rpx;
+    margin-bottom: 8rpx;
 }
 
 .pinglun-btn {
     background-color: #fff;
-    color: #535963;
+    color: #939393;
     padding: 0;
     height: 90%;
     border: none;
@@ -17,6 +19,10 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
+}
+
+.ctrl-item {
+    height: 60rpx;
 }
 
 .ctrl-item .icon {
@@ -46,7 +52,7 @@
 
 .share-btn {
     background-color: #fff;
-    color: #535963;
+    color: #939393;
     padding: 0;
     height: 90%;
     border: none;
