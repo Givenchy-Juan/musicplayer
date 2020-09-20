@@ -7,9 +7,9 @@
     height: 100%;
 }
 
-.pinglun-btn{
+.pinglun-btn {
     background-color: #fff;
-    color:#535963;
+    color: #535963;
     padding: 0;
     height: 90%;
     border: none;
@@ -46,11 +46,7 @@
 
 .share-btn {
     background-color: #fff;
-<<<<<<< HEAD
-    color: #bdbec4;
-=======
-    color:#535963;
->>>>>>> 34bfe7722c5b69dde760ead23f264581b7a0da7f
+    color: #535963;
     padding: 0;
     height: 90%;
     border: none;
