@@ -15,7 +15,7 @@ bind:loginsuccess="onLoginsuccess"
 bind:loginfail="onLoginfail"
 ></x-login>
 
-<x-bottom-modal modalShow="{{!modalShow}}">
+<x-bottom-modal modalShow="{{modalShow}}">
     <form slot="modal-content" report-submit="true" bind:submit="onSend">
         <textarea name="content" class="comment-content" placeholder="写评论" value="{{content}}" fixed="true"></textarea>
         <button class="send" form-type="submit">发送</button>
