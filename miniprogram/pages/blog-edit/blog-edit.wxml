@@ -11,7 +11,6 @@
         </block>
         <!-- 选择图片 -->
         <view class="image-wrap selectphoto" hidden="{{!selectPhoto}}" bind:tap="onChange">
-            <!-- 差一个加号的字体图标 -->
             <i class="iconfont icon-jiahao"></i>
         </view>
     </view>
