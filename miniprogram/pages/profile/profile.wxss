@@ -56,4 +56,5 @@ page {
 .icon-next01 {
     flex: 1;
     color: #333333;
+    margin-left: 450rpx;
 }

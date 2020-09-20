@@ -1,20 +1,17 @@
-<!--components/blog-ctrl/blog-ctrl.wxml-->
+<!-- components/blog-ctrl/blog-ctrl.wxml -->
 <view class="ctrl">
     <view class="ctrl-item" bind:tap="onComment">
         <i class="iconfont icon-pinglun icon"></i>
         <text class="text">评论</text>
     </view>
     <view class="ctrl-item share">
-        <i class="iconfont icon-fenxiang icon"></i>
-        <text class="text">分享</text>
+        <button open-type="share" hover-class="share-hover" class="share-btn" data-blogid="{{blogId}}" data-blog="{{blog}}">
+            <i class="iconfont icon-fenxiang icon"></i>
+            <text class="text">分享</text>
+        </button>
     </view>
 </view>
-
-<x-login modalShow="{{loginShow}}"
-bind:loginsuccess="onLoginsuccess"
-bind:loginfail="onLoginfail"
-></x-login>
-
+<x-login modalShow="{{loginShow}}" bind:loginsuccess="onLoginsuccess" bind:loginfail="onLoginfail"></x-login>
 <x-bottom-modal modalShow="{{modalShow}}">
     <form slot="modal-content" report-submit="true" bind:submit="onSend">
         <textarea name="content" class="comment-content" placeholder="写评论" value="{{content}}" fixed="true"></textarea>
