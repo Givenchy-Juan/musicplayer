@@ -51,9 +51,9 @@
     margin-right: 10rpx;
     margin-bottom: 10rpx;
     position: relative;
+    justify-content: center;
     overflow: hidden;
-    /* text-align: center; */
-    flex-wrap: wrap;
+    text-align: center;
     display: flex;
     align-items: center;
     border: 1px dashed #b9b9b9;
